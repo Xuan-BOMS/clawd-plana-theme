@@ -374,8 +374,12 @@ def build_sequence(row_frames: list[Image.Image], count: int, kind: str, scale: 
     frames = []
     for i in range(count):
         phase = i / count
-        source_idx = math.floor((phase * len(row_frames) * loops) % len(row_frames))
-        frames.append(render_frame(row_frames[source_idx], kind, scale, phase))
+        position = phase * len(row_frames) * loops
+        source_idx = math.floor(position) % len(row_frames)
+        frac = position - math.floor(position)
+        current = render_frame(row_frames[source_idx], kind, scale, phase)
+        next_frame = render_frame(row_frames[(source_idx + 1) % len(row_frames)], kind, scale, phase)
+        frames.append(blended_frame(current, next_frame, frac))
     return frames
 
 
@@ -450,7 +454,10 @@ def normalized_generated_frame(cell: Image.Image, fit_name: str, phase: float) -
     cfg = FIT[fit_name]
     max_w, max_h = cfg["max"]
     center_x, baseline = cfg["center"]
-    scale = min(max_w / sprite.width, max_h / sprite.height)
+    if fit_name in {"main-work", "wide-work", "mini"}:
+        scale = min(max_h / sprite.height, (CANVAS[0] - 8) / sprite.width)
+    else:
+        scale = min(max_w / sprite.width, max_h / sprite.height)
     size = (max(1, round(sprite.width * scale)), max(1, round(sprite.height * scale)))
     sprite = sprite.resize(size, Image.Resampling.LANCZOS)
     bob = math.sin(phase * math.tau) * (1.5 if "sleep" not in fit_name else 0.5)
@@ -575,8 +582,61 @@ def boosted_count(count: int) -> int:
     return max(count, int(math.ceil(count * 62 / FRAME_MS / 2)) * 2)
 
 
+_FLOW_CACHE: dict[tuple[int, int], tuple[np.ndarray, np.ndarray]] = {}
+
+
+def flow_gray(image: Image.Image) -> np.ndarray:
+    arr = np.array(image.convert("RGBA"), dtype=np.float32)
+    alpha = arr[:, :, 3] / 255.0
+    luminance = arr[:, :, 0] * 0.299 + arr[:, :, 1] * 0.587 + arr[:, :, 2] * 0.114
+    gray = luminance * alpha + 255.0 * (1.0 - alpha)
+    return np.clip(gray * 0.45 + alpha * 255.0 * 0.55, 0, 255).astype(np.uint8)
+
+
+def optical_flow_pair(a: Image.Image, b: Image.Image) -> tuple[np.ndarray, np.ndarray]:
+    key = (id(a), id(b))
+    cached = _FLOW_CACHE.get(key)
+    if cached is not None:
+        return cached
+    gray_a = flow_gray(a)
+    gray_b = flow_gray(b)
+    flow_ab = cv2.calcOpticalFlowFarneback(gray_a, gray_b, None, 0.5, 3, 21, 3, 5, 1.2, 0)
+    flow_ba = cv2.calcOpticalFlowFarneback(gray_b, gray_a, None, 0.5, 3, 21, 3, 5, 1.2, 0)
+    _FLOW_CACHE[key] = (flow_ab, flow_ba)
+    return flow_ab, flow_ba
+
+
+def premultiplied_array(image: Image.Image) -> np.ndarray:
+    arr = np.array(image.convert("RGBA"), dtype=np.float32) / 255.0
+    arr[:, :, :3] *= arr[:, :, 3:4]
+    return arr
+
+
+def warp_array(arr: np.ndarray, flow: np.ndarray, amount: float) -> np.ndarray:
+    height, width = arr.shape[:2]
+    grid_x, grid_y = np.meshgrid(np.arange(width), np.arange(height))
+    map_x = (grid_x - flow[:, :, 0] * amount).astype(np.float32)
+    map_y = (grid_y - flow[:, :, 1] * amount).astype(np.float32)
+    return cv2.remap(arr, map_x, map_y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+
+
 def blended_frame(a: Image.Image, b: Image.Image, amount: float) -> Image.Image:
-    return a if amount < 0.5 else b
+    amount = ease(max(0.0, min(1.0, amount)))
+    if amount <= 0.001:
+        return a
+    if amount >= 0.999:
+        return b
+    flow_ab, flow_ba = optical_flow_pair(a, b)
+    if amount <= 0.5:
+        out = warp_array(premultiplied_array(a), flow_ab, amount)
+    else:
+        out = warp_array(premultiplied_array(b), flow_ba, 1.0 - amount)
+    out_alpha = out[:, :, 3:4]
+    out_rgb = out[:, :, :3]
+    with np.errstate(divide="ignore", invalid="ignore"):
+        out_rgb = np.where(out_alpha > 0, out_rgb / np.maximum(out_alpha, 1e-6), 0)
+    rgba = np.dstack([out_rgb, out_alpha])
+    return Image.fromarray(np.clip(rgba * 255.0, 0, 255).astype(np.uint8), "RGBA")
 
 
 def build_generated_sequence(filename: str, count: int) -> list[Image.Image]:
@@ -599,7 +659,7 @@ def build_generated_sequence(filename: str, count: int) -> list[Image.Image]:
             frac = position - math.floor(position)
             frame = blended_frame(keyframes[idx], keyframes[(idx + 1) % len(keyframes)], frac)
         t = i / count
-        if fit_name in {"main-work", "wide-work", "mini"}:
+        if fit_name == "mini":
             dx = round(math.sin(t * math.tau * cycles) * 1)
             dy = round(math.sin(t * math.tau * max(1, cycles // 2)) * 1)
             shifted = Image.new("RGBA", CANVAS, (0, 0, 0, 0))
@@ -660,7 +720,7 @@ def theme_json() -> dict[str, object]:
         "schemaVersion": 1,
         "name": "Clawd Plana",
         "author": "Xuan",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "description": "Plana converted into a high-frame, cleaned-edge APNG Clawd on Desk theme.",
         "viewBox": {"x": 0, "y": 0, "width": CANVAS[0], "height": CANVAS[1]},
         "layout": {

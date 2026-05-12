@@ -11,6 +11,7 @@ Plana desk-pet theme for [Clawd on Desk](https://github.com/rullerzhou-afk/clawd
 - 运行格式：Clawd on Desk `theme.json` + APNG 动画资源
 - 画布尺寸：`266x200`
 - 动画资源：34 个 APNG 文件
+- 当前版本：`1.1.1`
 - 动画帧率：50 ms/frame，约 20 fps
 - Windows 安装目标：`%APPDATA%\clawd-on-desk\themes\clawd-plana`
 
@@ -74,8 +75,11 @@ tools/build_clawd_plana.py
 
 - APNG 输出约 20 fps。
 - 动作数量和帧数高于初版。
+- 工作动作按稳定角色高度重建，降低人物模型忽大忽小的问题。
+- 帧间过渡使用光流中间帧，减少关键姿势硬切。
 - 清理绿幕边缘，减少绿色溢色。
 - `docs/qa/dark-contact-sheet.png` 用于检查深色背景下的边缘质量。
+- `docs/qa/working-motion-strip.png` 用于检查工作动作的衔接和模型稳定性。
 
 ## Credits / 说明
 
