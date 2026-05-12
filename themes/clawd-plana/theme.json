@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "name": "Clawd Plana",
+  "author": "Xuan",
+  "version": "1.1.0",
+  "description": "Plana converted into a high-frame, cleaned-edge APNG Clawd on Desk theme.",
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 266,
+    "height": 200
+  },
+  "layout": {
+    "contentBox": {
+      "x": 48,
+      "y": 4,
+      "width": 154,
+      "height": 190
+    },
+    "marginBox": {
+      "x": 36,
+      "y": 0,
+      "width": 194,
+      "height": 200
+    },
+    "centerX": 133,
+    "baselineY": 194,
+    "visibleHeightRatio": 0.56,
+    "baselineBottomRatio": 0.04
+  },
+  "eyeTracking": {
+    "enabled": false,
+    "states": []
+  },
+  "states": {
+    "idle": [
+      "plana-idle.apng"
+    ],
+    "yawning": [
+      "plana-yawning.apng"
+    ],
+    "dozing": [
+      "plana-dozing.apng"
+    ],
+    "collapsing": [
+      "plana-collapsing.apng"
+    ],
+    "thinking": [
+      "plana-thinking.apng"
+    ],
+    "working": [
+      "plana-working-typing.apng"
+    ],
+    "juggling": [
+      "plana-working-juggling.apng"
+    ],
+    "sweeping": [
+      "plana-working-sweeping.apng"
+    ],
+    "error": [
+      "plana-error.apng"
+    ],
+    "attention": [
+      "plana-happy.apng"
+    ],
+    "notification": [
+      "plana-notification.apng"
+    ],
+    "carrying": [
+      "plana-working-carrying.apng"
+    ],
+    "sleeping": [
+      "plana-sleeping.apng"
+    ],
+    "waking": [
+      "plana-waking.apng"
+    ]
+  },
+  "sleepSequence": {
+    "mode": "full"
+  },
+  "workingTiers": [
+    {
+      "minSessions": 3,
+      "file": "plana-working-building.apng"
+    },
+    {
+      "minSessions": 2,
+      "file": "plana-working-juggling.apng"
+    },
+    {
+      "minSessions": 1,
+      "file": "plana-working-typing.apng"
+    }
+  ],
+  "jugglingTiers": [
+    {
+      "minSessions": 2,
+      "file": "plana-working-conducting.apng"
+    },
+    {
+      "minSessions": 1,
+      "file": "plana-working-juggling.apng"
+    }
+  ],
+  "idleAnimations": [
+    {
+      "file": "plana-idle-look.apng",
+      "duration": 5200
+    },
+    {
+      "file": "plana-idle-reading.apng",
+      "duration": 6500
+    },
+    {
+      "file": "plana-working-debugger.apng",
+      "duration": 6500
+    }
+  ],
+  "displayHintMap": {
+    "clawd-working-building.svg": "plana-working-building.apng",
+    "clawd-working-typing.svg": "plana-working-typing.apng",
+    "clawd-working-juggling.svg": "plana-working-juggling.apng",
+    "clawd-working-conducting.svg": "plana-working-conducting.apng",
+    "clawd-idle-reading.svg": "plana-idle-reading.apng",
+    "clawd-working-debugger.svg": "plana-working-debugger.apng",
+    "clawd-working-thinking.svg": "plana-thinking.apng"
+  },
+  "updateVisuals": {
+    "checking": "plana-working-debugger.apng"
+  },
+  "timings": {
+    "minDisplay": {
+      "attention": 4000,
+      "error": 5000,
+      "sweeping": 5500,
+      "notification": 3000,
+      "carrying": 3000,
+      "working": 1000,
+      "thinking": 1000
+    },
+    "autoReturn": {
+      "attention": 4000,
+      "error": 5000,
+      "sweeping": 300000,
+      "notification": 3000,
+      "carrying": 3000
+    },
+    "yawnDuration": 4000,
+    "collapseDuration": 2500,
+    "wakeDuration": 2500,
+    "deepSleepTimeout": 600000,
+    "mouseIdleTimeout": 20000,
+    "mouseSleepTimeout": 60000
+  },
+  "hitBoxes": {
+    "default": {
+      "x": 70,
+      "y": 12,
+      "w": 125,
+      "h": 176
+    },
+    "sleeping": {
+      "x": 54,
+      "y": 92,
+      "w": 160,
+      "h": 82
+    },
+    "wide": {
+      "x": 44,
+      "y": 18,
+      "w": 180,
+      "h": 170
+    }
+  },
+  "wideHitboxFiles": [
+    "plana-error.apng",
+    "plana-notification.apng",
+    "plana-working-conducting.apng",
+    "plana-working-sweeping.apng",
+    "plana-working-carrying.apng",
+    "plana-working-building.apng",
+    "plana-working-juggling.apng"
+  ],
+  "sleepingHitboxFiles": [
+    "plana-collapsing.apng",
+    "plana-sleeping.apng",
+    "plana-waking.apng"
+  ],
+  "reactions": {
+    "drag": {
+      "file": "plana-react-drag.apng"
+    },
+    "clickLeft": {
+      "file": "plana-react-left.apng",
+      "duration": 2500
+    },
+    "clickRight": {
+      "file": "plana-react-right.apng",
+      "duration": 2500
+    },
+    "annoyed": {
+      "file": "plana-react-annoyed.apng",
+      "duration": 3500
+    },
+    "double": {
+      "files": [
+        "plana-react-double.apng",
+        "plana-react-double-jump.apng"
+      ],
+      "duration": 3500
+    }
+  },
+  "miniMode": {
+    "supported": true,
+    "flipAssets": true,
+    "offsetRatio": 0.486,
+    "states": {
+      "mini-idle": [
+        "plana-mini-idle.apng"
+      ],
+      "mini-alert": [
+        "plana-mini-alert.apng"
+      ],
+      "mini-happy": [
+        "plana-mini-happy.apng"
+      ],
+      "mini-enter": [
+        "plana-mini-enter.apng"
+      ],
+      "mini-peek": [
+        "plana-mini-peek.apng"
+      ],
+      "mini-working": [
+        "plana-mini-typing.apng"
+      ],
+      "mini-crabwalk": [
+        "plana-mini-crabwalk.apng"
+      ],
+      "mini-enter-sleep": [
+        "plana-mini-enter-sleep.apng"
+      ],
+      "mini-sleep": [
+        "plana-mini-sleep.apng"
+      ]
+    },
+    "timings": {
+      "minDisplay": {
+        "mini-alert": 4000,
+        "mini-happy": 4000,
+        "mini-peek": 1500
+      },
+      "autoReturn": {
+        "mini-alert": 4000,
+        "mini-happy": 4000,
+        "mini-peek": 1500
+      }
+    },
+    "glyphFlips": {}
+  },
+  "objectScale": {
+    "widthRatio": 0.62,
+    "heightRatio": 0.58,
+    "imgWidthRatio": 0.62,
+    "objBottom": 0.05,
+    "imgBottom": 0.05,
+    "offsetX": 0.0,
+    "offsetY": 0.0,
+    "fileScales": {
+      "plana-working-typing.apng": 1.05,
+      "plana-working-building.apng": 1.05,
+      "plana-working-juggling.apng": 1.05,
+      "plana-working-conducting.apng": 1.05,
+      "plana-working-sweeping.apng": 1.08,
+      "plana-working-carrying.apng": 1.08,
+      "plana-error.apng": 1.04,
+      "plana-happy.apng": 1.04,
+      "plana-thinking.apng": 1.04
+    },
+    "fileOffsets": {
+      "plana-working-typing.apng": {
+        "x": -6,
+        "y": 0
+      },
+      "plana-working-building.apng": {
+        "x": -6,
+        "y": 0
+      },
+      "plana-working-juggling.apng": {
+        "x": -6,
+        "y": 0
+      },
+      "plana-working-conducting.apng": {
+        "x": -6,
+        "y": 0
+      },
+      "plana-working-sweeping.apng": {
+        "x": -10,
+        "y": 0
+      },
+      "plana-working-carrying.apng": {
+        "x": -10,
+        "y": 0
+      },
+      "plana-mini-idle.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-alert.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-happy.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-enter.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-peek.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-typing.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-crabwalk.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-enter-sleep.apng": {
+        "x": 0,
+        "y": 58
+      },
+      "plana-mini-sleep.apng": {
+        "x": 0,
+        "y": 58
+      }
+    }
+  }
+}
