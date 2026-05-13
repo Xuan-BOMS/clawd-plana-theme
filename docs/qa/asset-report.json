@@ -45,8 +45,8 @@
       ]
     },
     "plana-yawning.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "waving",
       "frames": 80,
       "durationMs": 50,
       "fps": 20.0,
@@ -56,8 +56,8 @@
       ]
     },
     "plana-dozing.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 1,
+      "source": "atlas",
+      "sourceRow": "waiting",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -67,8 +67,8 @@
       ]
     },
     "plana-collapsing.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 2,
+      "source": "atlas",
+      "sourceRow": "failed",
       "frames": 50,
       "durationMs": 50,
       "fps": 20.0,
@@ -78,8 +78,8 @@
       ]
     },
     "plana-sleeping.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 3,
+      "source": "atlas",
+      "sourceRow": "idle",
       "frames": 80,
       "durationMs": 50,
       "fps": 20.0,
@@ -89,8 +89,8 @@
       ]
     },
     "plana-waking.apng": {
-      "source": "generated:waking-strip.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "idle",
       "frames": 50,
       "durationMs": 50,
       "fps": 20.0,
@@ -111,8 +111,8 @@
       ]
     },
     "plana-working-typing.apng": {
-      "source": "generated:working-grid.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "review",
       "frames": 80,
       "durationMs": 50,
       "fps": 20.0,
@@ -122,8 +122,8 @@
       ]
     },
     "plana-working-building.apng": {
-      "source": "generated:building-strip.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "jumping",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -133,8 +133,8 @@
       ]
     },
     "plana-working-juggling.apng": {
-      "source": "generated:juggling-strip.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "running",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -144,8 +144,8 @@
       ]
     },
     "plana-working-conducting.apng": {
-      "source": "generated:conducting-strip.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "waving",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -155,8 +155,8 @@
       ]
     },
     "plana-working-sweeping.apng": {
-      "source": "generated:working-grid.png",
-      "sourceRow": 4,
+      "source": "atlas",
+      "sourceRow": "running-left",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -166,8 +166,8 @@
       ]
     },
     "plana-working-carrying.apng": {
-      "source": "generated:carrying-strip.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "running-right",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -199,8 +199,8 @@
       ]
     },
     "plana-notification.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 5,
+      "source": "atlas",
+      "sourceRow": "waving",
       "frames": 50,
       "durationMs": 50,
       "fps": 20.0,
@@ -276,8 +276,8 @@
       ]
     },
     "plana-mini-idle.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 0,
+      "source": "atlas",
+      "sourceRow": "idle",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -287,8 +287,8 @@
       ]
     },
     "plana-mini-alert.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 1,
+      "source": "atlas",
+      "sourceRow": "waving",
       "frames": 40,
       "durationMs": 50,
       "fps": 20.0,
@@ -298,8 +298,8 @@
       ]
     },
     "plana-mini-happy.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 2,
+      "source": "atlas",
+      "sourceRow": "jumping",
       "frames": 50,
       "durationMs": 50,
       "fps": 20.0,
@@ -309,8 +309,8 @@
       ]
     },
     "plana-mini-enter.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 3,
+      "source": "atlas",
+      "sourceRow": "running-right",
       "frames": 30,
       "durationMs": 50,
       "fps": 20.0,
@@ -320,8 +320,8 @@
       ]
     },
     "plana-mini-peek.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 4,
+      "source": "atlas",
+      "sourceRow": "waiting",
       "frames": 24,
       "durationMs": 50,
       "fps": 20.0,
@@ -331,8 +331,8 @@
       ]
     },
     "plana-mini-typing.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 5,
+      "source": "atlas",
+      "sourceRow": "review",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -342,8 +342,8 @@
       ]
     },
     "plana-mini-crabwalk.apng": {
-      "source": "generated:mini-grid.png",
-      "sourceRow": 3,
+      "source": "atlas",
+      "sourceRow": "running-left",
       "frames": 40,
       "durationMs": 50,
       "fps": 20.0,
@@ -353,8 +353,8 @@
       ]
     },
     "plana-mini-enter-sleep.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 3,
+      "source": "atlas",
+      "sourceRow": "idle",
       "frames": 30,
       "durationMs": 50,
       "fps": 20.0,
@@ -364,8 +364,8 @@
       ]
     },
     "plana-mini-sleep.apng": {
-      "source": "generated:sleep-reactions-grid.png",
-      "sourceRow": 3,
+      "source": "atlas",
+      "sourceRow": "idle",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,

@@ -95,6 +95,8 @@ GENERATED_ASSETS = {
     "plana-mini-sleep.apng": ("sleep-reactions-grid.png", 6, 6, 3, 48, "mini-sleep"),
 }
 
+STABILIZED_ATLAS_ASSETS = set(GENERATED_ASSETS)
+
 GENERATED_CYCLES = {
     "plana-dozing.apng": 2,
     "plana-notification.apng": 3,
@@ -188,15 +190,29 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
     pulse = math.sin(phase * math.tau)
 
     if kind in {"typing", "mini-typing"}:
-        x0, y0 = (145, 164) if kind == "typing" else (154, 174)
-        draw_round_rect(draw, (x0, y0, x0 + 64, y0 + 18), 3, (35, 43, 61, 235), (14, 18, 28, 255), 2)
+        if kind == "typing":
+            x0, y0, screen_w, screen_h = 82, 137, 74, 34
+        else:
+            x0, y0, screen_w, screen_h = 113, 159, 45, 21
+        draw_round_rect(draw, (x0 + 4, y0, x0 + 4 + screen_w, y0 + screen_h), 3, (20, 29, 43, 255), (8, 11, 18, 255), 2)
+        draw.rectangle((x0 + 10, y0 + 7, x0 + screen_w - 6, y0 + screen_h - 8), fill=(32, 52, 73, 255))
+        for i in range(3):
+            yy = y0 + 10 + i * 6
+            bright = 116 + ((i + round(phase * 8)) % 2) * 60
+            draw.line((x0 + 14, yy, x0 + screen_w - 12 - i * 8, yy), fill=(bright, 211, 255, 255), width=2)
+        base_y = y0 + screen_h
+        draw.polygon(
+            [(x0, base_y), (x0 + screen_w + 12, base_y), (x0 + screen_w + 20, base_y + 14), (x0 + 8, base_y + 14)],
+            fill=(35, 43, 61, 255),
+            outline=(8, 11, 18, 255),
+        )
+        key_cols = 8 if kind == "typing" else 5
         for row in range(2):
-            for col in range(7):
-                bright = 160 + ((col + row + round(phase * 12)) % 3) * 25
-                draw.rectangle(
-                    (x0 + 6 + col * 8, y0 + 5 + row * 6, x0 + 10 + col * 8, y0 + 7 + row * 6),
-                    fill=(bright, 218, 255, 255),
-                )
+            for col in range(key_cols):
+                bright = 132 + ((col + row + round(phase * 12)) % 3) * 30
+                x = x0 + 10 + col * (7 if kind == "typing" else 6)
+                y = base_y + 4 + row * 5
+                draw.rectangle((x, y, x + 4, y + 2), fill=(bright, 218, 255, 255))
 
     elif kind in {"reading", "debugger", "thinking"}:
         x0 = 151 + round(pulse)
@@ -226,15 +242,15 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
             draw.ellipse((x - 5, y - 5, x + 5, y + 5), fill=colors[i], outline=(15, 18, 26, 255), width=2)
 
     elif kind == "conducting":
-        x0, y0 = 170, 126
-        x1 = 220 + math.sin(phase * math.tau * 2) * 4
-        y1 = 100 + math.cos(phase * math.tau * 2) * 9
+        x0, y0 = 151, 126
+        x1 = 208 + math.sin(phase * math.tau * 2) * 4
+        y1 = 100 + math.cos(phase * math.tau * 2) * 8
         draw.line((x0, y0, x1, y1), fill=(242, 229, 194, 255), width=4)
         draw.line((x0, y0, x1, y1), fill=(76, 52, 43, 255), width=1)
 
     elif kind == "sweeping":
-        x0 = 160 + math.sin(phase * math.tau * 2) * 5
-        draw.line((x0, 123, x0 + 48, 184), fill=(111, 74, 44, 255), width=5)
+        x0 = 144 + math.sin(phase * math.tau * 2) * 3
+        draw.line((x0, 126, x0 + 48, 184), fill=(111, 74, 44, 255), width=5)
         draw.polygon(
             [(x0 + 40, 174), (x0 + 66, 188), (x0 + 52, 196), (x0 + 31, 181)],
             fill=(79, 164, 230, 255),
@@ -242,11 +258,12 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
         )
 
     elif kind == "carrying":
-        x0 = 158 + round(math.sin(phase * math.tau * 2) * 2)
-        y0 = 152 + round(abs(math.sin(phase * math.tau)) * 3)
-        draw.rectangle((x0, y0, x0 + 50, y0 + 38), fill=(158, 112, 67, 255), outline=(39, 29, 22, 255), width=3)
-        draw.line((x0, y0 + 14, x0 + 50, y0 + 14), fill=(120, 82, 48, 255), width=2)
-        draw.line((x0 + 25, y0, x0 + 25, y0 + 38), fill=(120, 82, 48, 255), width=2)
+        x0 = 126 + round(math.sin(phase * math.tau * 2) * 1)
+        y0 = 143 + round(abs(math.sin(phase * math.tau)) * 2)
+        draw_round_rect(draw, (x0, y0, x0 + 48, y0 + 38), 2, (158, 112, 67, 255), (39, 29, 22, 255), 3)
+        draw.line((x0, y0 + 14, x0 + 48, y0 + 14), fill=(120, 82, 48, 255), width=2)
+        draw.line((x0 + 24, y0, x0 + 24, y0 + 38), fill=(120, 82, 48, 255), width=2)
+        draw.arc((x0 + 14, y0 + 7, x0 + 34, y0 + 22), 200, 340, fill=(60, 43, 29, 255), width=2)
 
     elif kind in {"notification", "mini-alert"}:
         x, y = 184, 36 if kind == "notification" else 150
@@ -328,8 +345,8 @@ def motion(kind: str, phase: float) -> dict[str, float | bool]:
         params["angle"] = 8 + wave * 4
         params["dx"] = wave2 * 5
     elif kind in {"building", "juggling", "conducting", "sweeping", "carrying"}:
-        params["dy"] = wave2 * 3
-        params["angle"] = wave * 3
+        params["dy"] = wave2 * 1.2
+        params["angle"] = wave * 1.2
         params["center_x"] = 119 if kind in {"sweeping", "carrying"} else 124
     elif kind == "notification":
         params["dy"] = wave2 * 3
@@ -348,7 +365,7 @@ def motion(kind: str, phase: float) -> dict[str, float | bool]:
     return params
 
 
-def render_frame(cell: Image.Image, kind: str, scale: float, phase: float) -> Image.Image:
+def render_frame(cell: Image.Image, kind: str, scale: float, phase: float, include_prop: bool = True) -> Image.Image:
     params = motion(kind, phase)
     canvas = Image.new("RGBA", CANVAS, (0, 0, 0, 0))
     sprite = sprite_from_cell(
@@ -366,7 +383,8 @@ def render_frame(cell: Image.Image, kind: str, scale: float, phase: float) -> Im
         dx=float(params["dx"]),
         dy=float(params["dy"]),
     )
-    draw_prop(canvas, kind, phase)
+    if include_prop:
+        draw_prop(canvas, kind, phase)
     return canvas
 
 
@@ -377,9 +395,11 @@ def build_sequence(row_frames: list[Image.Image], count: int, kind: str, scale: 
         position = phase * len(row_frames) * loops
         source_idx = math.floor(position) % len(row_frames)
         frac = position - math.floor(position)
-        current = render_frame(row_frames[source_idx], kind, scale, phase)
-        next_frame = render_frame(row_frames[(source_idx + 1) % len(row_frames)], kind, scale, phase)
-        frames.append(blended_frame(current, next_frame, frac))
+        current = render_frame(row_frames[source_idx], kind, scale, phase, include_prop=False)
+        next_frame = render_frame(row_frames[(source_idx + 1) % len(row_frames)], kind, scale, phase, include_prop=False)
+        frame = blended_frame(current, next_frame, frac)
+        draw_prop(frame, kind, phase)
+        frames.append(frame)
     return frames
 
 
@@ -694,7 +714,7 @@ def create_assets(rows: dict[str, list[Image.Image]]) -> tuple[dict[str, dict[st
     previews = {}
     for filename, row, count, kind, scale, loops in MAIN_ASSETS + MINI_ASSETS:
         frame_count = boosted_count(count)
-        if filename in GENERATED_ASSETS:
+        if filename in GENERATED_ASSETS and filename not in STABILIZED_ATLAS_ASSETS:
             frames = build_generated_sequence(filename, frame_count)
             source = f"generated:{GENERATED_ASSETS[filename][0]}"
             source_row = GENERATED_ASSETS[filename][3]
@@ -720,7 +740,7 @@ def theme_json() -> dict[str, object]:
         "schemaVersion": 1,
         "name": "Clawd Plana",
         "author": "Xuan",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "description": "Plana converted into a high-frame, cleaned-edge APNG Clawd on Desk theme.",
         "viewBox": {"x": 0, "y": 0, "width": CANVAS[0], "height": CANVAS[1]},
         "layout": {
