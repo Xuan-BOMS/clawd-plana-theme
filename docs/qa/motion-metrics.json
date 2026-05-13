@@ -6,8 +6,8 @@
     "hRangeRatio": 0.4561,
     "areaJumpRatio": 0.0159,
     "maxCxJump": 1.13,
-    "maxCyJump": 3.16,
-    "score": 109.94
+    "maxCyJump": 3.2,
+    "score": 110.0
   },
   {
     "file": "plana-collapsing.apng",
@@ -32,22 +32,32 @@
   {
     "file": "plana-react-double.apng",
     "frames": 56,
-    "wRangeRatio": 0.1538,
-    "hRangeRatio": 0.067,
-    "areaJumpRatio": 0.1699,
-    "maxCxJump": 3.6,
-    "maxCyJump": 8.17,
-    "score": 62.5
+    "wRangeRatio": 0.155,
+    "hRangeRatio": 0.0726,
+    "areaJumpRatio": 0.1577,
+    "maxCxJump": 2.34,
+    "maxCyJump": 6.61,
+    "score": 56.91
   },
   {
     "file": "plana-happy.apng",
     "frames": 60,
-    "wRangeRatio": 0.155,
-    "hRangeRatio": 0.0722,
-    "areaJumpRatio": 0.131,
+    "wRangeRatio": 0.1544,
+    "hRangeRatio": 0.0726,
+    "areaJumpRatio": 0.1311,
     "maxCxJump": 2.33,
     "maxCyJump": 7.54,
-    "score": 55.24
+    "score": 55.23
+  },
+  {
+    "file": "plana-error.apng",
+    "frames": 50,
+    "wRangeRatio": 0.1491,
+    "hRangeRatio": 0.0167,
+    "areaJumpRatio": 0.0687,
+    "maxCxJump": 4.02,
+    "maxCyJump": 3.45,
+    "score": 37.52
   },
   {
     "file": "plana-mini-happy.apng",
@@ -70,16 +80,6 @@
     "score": 37.24
   },
   {
-    "file": "plana-error.apng",
-    "frames": 50,
-    "wRangeRatio": 0.1404,
-    "hRangeRatio": 0.0167,
-    "areaJumpRatio": 0.0508,
-    "maxCxJump": 3.97,
-    "maxCyJump": 3.43,
-    "score": 34.38
-  },
-  {
     "file": "plana-react-annoyed.apng",
     "frames": 50,
     "wRangeRatio": 0.0938,
@@ -100,54 +100,24 @@
     "score": 31.13
   },
   {
-    "file": "plana-mini-crabwalk.apng",
+    "file": "plana-react-drag.apng",
     "frames": 40,
-    "wRangeRatio": 0.0946,
-    "hRangeRatio": 0.0268,
-    "areaJumpRatio": 0.0715,
-    "maxCxJump": 3.41,
-    "maxCyJump": 2.01,
-    "score": 29.94
-  },
-  {
-    "file": "plana-mini-enter.apng",
-    "frames": 30,
-    "wRangeRatio": 0.1014,
-    "hRangeRatio": 0.0085,
-    "areaJumpRatio": 0.0465,
-    "maxCxJump": 4.63,
-    "maxCyJump": 1.57,
-    "score": 27.11
+    "wRangeRatio": 0.1453,
+    "hRangeRatio": 0.0299,
+    "areaJumpRatio": 0.0357,
+    "maxCxJump": 2.19,
+    "maxCyJump": 2.02,
+    "score": 28.98
   },
   {
     "file": "plana-react-left.apng",
     "frames": 50,
-    "wRangeRatio": 0.1273,
-    "hRangeRatio": 0.0111,
-    "areaJumpRatio": 0.0262,
-    "maxCxJump": 1.79,
+    "wRangeRatio": 0.1182,
+    "hRangeRatio": 0.0278,
+    "areaJumpRatio": 0.0218,
+    "maxCxJump": 1.53,
     "maxCyJump": 2.19,
-    "score": 23.74
-  },
-  {
-    "file": "plana-react-drag.apng",
-    "frames": 40,
-    "wRangeRatio": 0.0909,
-    "hRangeRatio": 0.0282,
-    "areaJumpRatio": 0.028,
-    "maxCxJump": 2.4,
-    "maxCyJump": 1.85,
-    "score": 22.5
-  },
-  {
-    "file": "plana-working-juggling.apng",
-    "frames": 60,
-    "wRangeRatio": 0.1172,
-    "hRangeRatio": 0.0179,
-    "areaJumpRatio": 0.0289,
-    "maxCxJump": 1.21,
-    "maxCyJump": 1.47,
-    "score": 21.53
+    "score": 23.53
   },
   {
     "file": "plana-react-right.apng",
@@ -160,14 +130,14 @@
     "score": 20.6
   },
   {
-    "file": "plana-working-sweeping.apng",
+    "file": "plana-working-juggling.apng",
     "frames": 60,
-    "wRangeRatio": 0.0616,
-    "hRangeRatio": 0.0237,
-    "areaJumpRatio": 0.0369,
-    "maxCxJump": 1.86,
-    "maxCyJump": 2.44,
-    "score": 20.26
+    "wRangeRatio": 0.1362,
+    "hRangeRatio": 0.0111,
+    "areaJumpRatio": 0.013,
+    "maxCxJump": 1.16,
+    "maxCyJump": 1.28,
+    "score": 20.44
   },
   {
     "file": "plana-yawning.apng",
@@ -210,14 +180,54 @@
     "score": 17.03
   },
   {
+    "file": "plana-working-typing.apng",
+    "frames": 80,
+    "wRangeRatio": 0.0594,
+    "hRangeRatio": 0.006,
+    "areaJumpRatio": 0.0481,
+    "maxCxJump": 0.71,
+    "maxCyJump": 0.58,
+    "score": 14.5
+  },
+  {
+    "file": "plana-idle-look.apng",
+    "frames": 66,
+    "wRangeRatio": 0.0826,
+    "hRangeRatio": 0.0106,
+    "areaJumpRatio": 0.0129,
+    "maxCxJump": 0.34,
+    "maxCyJump": 1.36,
+    "score": 13.74
+  },
+  {
+    "file": "plana-working-sweeping.apng",
+    "frames": 60,
+    "wRangeRatio": 0.0593,
+    "hRangeRatio": 0.0216,
+    "areaJumpRatio": 0.0121,
+    "maxCxJump": 1.16,
+    "maxCyJump": 1.26,
+    "score": 13.67
+  },
+  {
+    "file": "plana-mini-enter.apng",
+    "frames": 30,
+    "wRangeRatio": 0.0429,
+    "hRangeRatio": 0.0085,
+    "areaJumpRatio": 0.0517,
+    "maxCxJump": 0.24,
+    "maxCyJump": 1.08,
+    "score": 13.59
+  },
+  {
     "file": "plana-working-carrying.apng",
     "frames": 60,
-    "wRangeRatio": 0.0667,
-    "hRangeRatio": 0.0123,
-    "areaJumpRatio": 0.0202,
-    "maxCxJump": 1.7,
-    "maxCyJump": 1.54,
-    "score": 15.83
+    "wRangeRatio": 0.0673,
+    "hRangeRatio": 0.0111,
+    "areaJumpRatio": 0.0109,
+    "maxCxJump": 1.1,
+    "maxCyJump": 1.25,
+    "score": 13.14
   },
   {
     "file": "plana-dozing.apng",
@@ -230,14 +240,14 @@
     "score": 13.0
   },
   {
-    "file": "plana-idle-look.apng",
-    "frames": 66,
-    "wRangeRatio": 0.0734,
-    "hRangeRatio": 0.0106,
-    "areaJumpRatio": 0.0098,
-    "maxCxJump": 0.29,
-    "maxCyJump": 1.36,
-    "score": 12.38
+    "file": "plana-mini-crabwalk.apng",
+    "frames": 40,
+    "wRangeRatio": 0.0758,
+    "hRangeRatio": 0.0,
+    "areaJumpRatio": 0.0212,
+    "maxCxJump": 0.24,
+    "maxCyJump": 1.18,
+    "score": 12.52
   },
   {
     "file": "plana-mini-typing.apng",
@@ -260,16 +270,6 @@
     "score": 11.02
   },
   {
-    "file": "plana-idle-reading.apng",
-    "frames": 80,
-    "wRangeRatio": 0.0476,
-    "hRangeRatio": 0.006,
-    "areaJumpRatio": 0.0217,
-    "maxCxJump": 1.22,
-    "maxCyJump": 0.53,
-    "score": 10.94
-  },
-  {
     "file": "plana-mini-alert.apng",
     "frames": 40,
     "wRangeRatio": 0.028,
@@ -278,16 +278,6 @@
     "maxCxJump": 0.73,
     "maxCyJump": 1.25,
     "score": 10.4
-  },
-  {
-    "file": "plana-working-typing.apng",
-    "frames": 80,
-    "wRangeRatio": 0.049,
-    "hRangeRatio": 0.006,
-    "areaJumpRatio": 0.0215,
-    "maxCxJump": 0.38,
-    "maxCyJump": 0.48,
-    "score": 9.55
   },
   {
     "file": "plana-thinking.apng",
@@ -310,14 +300,14 @@
     "score": 8.02
   },
   {
-    "file": "plana-idle.apng",
-    "frames": 60,
-    "wRangeRatio": 0.0354,
-    "hRangeRatio": 0.0053,
-    "areaJumpRatio": 0.0082,
-    "maxCxJump": 0.36,
-    "maxCyJump": 1.08,
-    "score": 7.51
+    "file": "plana-idle-reading.apng",
+    "frames": 80,
+    "wRangeRatio": 0.0476,
+    "hRangeRatio": 0.006,
+    "areaJumpRatio": 0.0121,
+    "maxCxJump": 0.39,
+    "maxCyJump": 0.3,
+    "score": 7.98
   },
   {
     "file": "plana-mini-sleep.apng",
@@ -328,6 +318,16 @@
     "maxCxJump": 0.31,
     "maxCyJump": 0.22,
     "score": 7.09
+  },
+  {
+    "file": "plana-idle.apng",
+    "frames": 60,
+    "wRangeRatio": 0.0265,
+    "hRangeRatio": 0.0053,
+    "areaJumpRatio": 0.006,
+    "maxCxJump": 0.14,
+    "maxCyJump": 1.08,
+    "score": 5.99
   },
   {
     "file": "plana-mini-idle.apng",

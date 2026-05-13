@@ -134,7 +134,7 @@
     },
     "plana-working-juggling.apng": {
       "source": "atlas",
-      "sourceRow": "running",
+      "sourceRow": "waiting",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -156,7 +156,7 @@
     },
     "plana-working-sweeping.apng": {
       "source": "atlas",
-      "sourceRow": "running-left",
+      "sourceRow": "waiting",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -167,7 +167,7 @@
     },
     "plana-working-carrying.apng": {
       "source": "atlas",
-      "sourceRow": "running-right",
+      "sourceRow": "waiting",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,
@@ -211,7 +211,7 @@
     },
     "plana-react-drag.apng": {
       "source": "atlas",
-      "sourceRow": "running",
+      "sourceRow": "failed",
       "frames": 40,
       "durationMs": 50,
       "fps": 20.0,
@@ -310,7 +310,7 @@
     },
     "plana-mini-enter.apng": {
       "source": "atlas",
-      "sourceRow": "running-right",
+      "sourceRow": "idle",
       "frames": 30,
       "durationMs": 50,
       "fps": 20.0,
@@ -343,7 +343,7 @@
     },
     "plana-mini-crabwalk.apng": {
       "source": "atlas",
-      "sourceRow": "running-left",
+      "sourceRow": "waiting",
       "frames": 40,
       "durationMs": 50,
       "fps": 20.0,

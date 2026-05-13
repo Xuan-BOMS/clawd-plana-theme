@@ -44,14 +44,14 @@ MAIN_ASSETS = [
     ("plana-thinking.apng", "review", 48, "thinking", 0.88, 2),
     ("plana-working-typing.apng", "review", 64, "typing", 0.84, 3),
     ("plana-working-building.apng", "jumping", 48, "building", 0.82, 3),
-    ("plana-working-juggling.apng", "running", 48, "juggling", 0.84, 3),
+    ("plana-working-juggling.apng", "waiting", 48, "juggling", 0.90, 2),
     ("plana-working-conducting.apng", "waving", 48, "conducting", 0.84, 3),
-    ("plana-working-sweeping.apng", "running-left", 48, "sweeping", 0.82, 3),
-    ("plana-working-carrying.apng", "running-right", 48, "carrying", 0.82, 3),
+    ("plana-working-sweeping.apng", "waiting", 48, "sweeping", 0.90, 2),
+    ("plana-working-carrying.apng", "waiting", 48, "carrying", 0.90, 2),
     ("plana-error.apng", "failed", 40, "error", 0.90, 2),
     ("plana-happy.apng", "jumping", 48, "happy", 0.90, 2),
     ("plana-notification.apng", "waving", 40, "notification", 0.90, 2),
-    ("plana-react-drag.apng", "running", 32, "drag", 0.88, 2),
+    ("plana-react-drag.apng", "failed", 32, "drag", 0.84, 1),
     ("plana-react-left.apng", "waving", 40, "react-left", 0.90, 2),
     ("plana-react-right.apng", "waving", 40, "react-right", 0.90, 2),
     ("plana-react-annoyed.apng", "failed", 40, "annoyed", 0.90, 2),
@@ -63,10 +63,10 @@ MINI_ASSETS = [
     ("plana-mini-idle.apng", "idle", 48, "mini-idle", 0.58, 1),
     ("plana-mini-alert.apng", "waving", 32, "mini-alert", 0.58, 2),
     ("plana-mini-happy.apng", "jumping", 40, "mini-happy", 0.58, 2),
-    ("plana-mini-enter.apng", "running-right", 24, "mini-enter", 0.58, 2),
+    ("plana-mini-enter.apng", "idle", 24, "mini-idle", 0.58, 1),
     ("plana-mini-peek.apng", "waiting", 18, "mini-peek", 0.58, 1),
     ("plana-mini-typing.apng", "review", 48, "mini-typing", 0.56, 3),
-    ("plana-mini-crabwalk.apng", "running-left", 32, "mini-crabwalk", 0.56, 3),
+    ("plana-mini-crabwalk.apng", "waiting", 32, "mini-idle", 0.56, 1),
     ("plana-mini-enter-sleep.apng", "idle", 24, "mini-enter-sleep", 0.56, 1),
     ("plana-mini-sleep.apng", "idle", 48, "mini-sleep", 0.56, 1),
 ]
@@ -249,16 +249,16 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
         draw.line((x0, y0, x1, y1), fill=(76, 52, 43, 255), width=1)
 
     elif kind == "sweeping":
-        x0 = 144 + math.sin(phase * math.tau * 2) * 3
-        draw.line((x0, 126, x0 + 48, 184), fill=(111, 74, 44, 255), width=5)
+        x0 = 148 + math.sin(phase * math.tau * 2) * 2
+        draw.line((x0, 122, x0 + 40, 184), fill=(111, 74, 44, 255), width=5)
         draw.polygon(
-            [(x0 + 40, 174), (x0 + 66, 188), (x0 + 52, 196), (x0 + 31, 181)],
+            [(x0 + 32, 174), (x0 + 58, 188), (x0 + 45, 196), (x0 + 25, 181)],
             fill=(79, 164, 230, 255),
             outline=(15, 19, 28, 255),
         )
 
     elif kind == "carrying":
-        x0 = 126 + round(math.sin(phase * math.tau * 2) * 1)
+        x0 = 118 + round(math.sin(phase * math.tau * 2) * 1)
         y0 = 143 + round(abs(math.sin(phase * math.tau)) * 2)
         draw_round_rect(draw, (x0, y0, x0 + 48, y0 + 38), 2, (158, 112, 67, 255), (39, 29, 22, 255), 3)
         draw.line((x0, y0 + 14, x0 + 48, y0 + 14), fill=(120, 82, 48, 255), width=2)
@@ -347,7 +347,7 @@ def motion(kind: str, phase: float) -> dict[str, float | bool]:
     elif kind in {"building", "juggling", "conducting", "sweeping", "carrying"}:
         params["dy"] = wave2 * 1.2
         params["angle"] = wave * 1.2
-        params["center_x"] = 119 if kind in {"sweeping", "carrying"} else 124
+        params["center_x"] = 124
     elif kind == "notification":
         params["dy"] = wave2 * 3
         params["angle"] = wave * 3
@@ -740,7 +740,7 @@ def theme_json() -> dict[str, object]:
         "schemaVersion": 1,
         "name": "Clawd Plana",
         "author": "Xuan",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "description": "Plana converted into a high-frame, cleaned-edge APNG Clawd on Desk theme.",
         "viewBox": {"x": 0, "y": 0, "width": CANVAS[0], "height": CANVAS[1]},
         "layout": {
