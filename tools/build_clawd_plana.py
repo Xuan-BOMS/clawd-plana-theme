@@ -43,7 +43,7 @@ MAIN_ASSETS = [
     ("plana-waking.apng", "idle", 40, "wake", 0.76, 1),
     ("plana-thinking.apng", "review", 48, "thinking", 0.88, 2),
     ("plana-working-typing.apng", "review", 64, "typing", 0.84, 3),
-    ("plana-working-building.apng", "jumping", 48, "building", 0.82, 3),
+    ("plana-working-building.apng", "idle", 48, "building", 0.90, 1),
     ("plana-working-juggling.apng", "waiting", 48, "juggling", 0.90, 2),
     ("plana-working-conducting.apng", "waving", 48, "conducting", 0.84, 3),
     ("plana-working-sweeping.apng", "waiting", 48, "sweeping", 0.90, 2),
@@ -810,7 +810,7 @@ def theme_json() -> dict[str, object]:
         "schemaVersion": 1,
         "name": "Clawd Plana",
         "author": "Xuan",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "description": "Plana converted into a high-frame, cleaned-edge APNG Clawd on Desk theme.",
         "viewBox": {"x": 0, "y": 0, "width": CANVAS[0], "height": CANVAS[1]},
         "layout": {

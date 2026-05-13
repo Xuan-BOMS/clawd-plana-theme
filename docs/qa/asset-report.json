@@ -123,7 +123,7 @@
     },
     "plana-working-building.apng": {
       "source": "atlas",
-      "sourceRow": "jumping",
+      "sourceRow": "idle",
       "frames": 60,
       "durationMs": 50,
       "fps": 20.0,

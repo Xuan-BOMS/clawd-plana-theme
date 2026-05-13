@@ -70,16 +70,6 @@
     "score": 33.12
   },
   {
-    "file": "plana-working-building.apng",
-    "frames": 60,
-    "wRangeRatio": 0.0748,
-    "hRangeRatio": 0.0793,
-    "areaJumpRatio": 0.0698,
-    "maxCxJump": 2.15,
-    "maxCyJump": 2.17,
-    "score": 31.13
-  },
-  {
     "file": "plana-react-drag.apng",
     "frames": 40,
     "wRangeRatio": 0.1453,
@@ -267,6 +257,16 @@
     "areaJumpRatio": 0.0149,
     "maxCxJump": 0.52,
     "maxCyJump": 0.24,
+    "score": 7.72
+  },
+  {
+    "file": "plana-working-building.apng",
+    "frames": 60,
+    "wRangeRatio": 0.0201,
+    "hRangeRatio": 0.0111,
+    "areaJumpRatio": 0.0061,
+    "maxCxJump": 1.22,
+    "maxCyJump": 1.05,
     "score": 7.72
   },
   {
