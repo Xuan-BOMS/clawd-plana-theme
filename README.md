@@ -11,7 +11,7 @@ Plana desk-pet theme for [Clawd on Desk](https://github.com/rullerzhou-afk/clawd
 - 运行格式：Clawd on Desk `theme.json` + APNG 动画资源
 - 画布尺寸：`266x200`
 - 动画资源：34 个 APNG 文件
-- 当前版本：`1.1.3`
+- 当前版本：`1.1.4`
 - 动画帧率：50 ms/frame，约 20 fps
 - Windows 安装目标：`%APPDATA%\clawd-on-desk\themes\clawd-plana`
 
@@ -78,9 +78,11 @@ tools/build_clawd_plana.py
 - 工作动作按稳定角色高度重建，降低人物模型忽大忽小的问题。
 - 工作动作使用稳定角色层和固定道具层合成，降低电脑、箱子、扫帚等道具忽远忽近的问题。
 - 跑步派生动作已替换为站立任务动作，避免角色前后冲刺造成忽大忽小。
+- mini 靠边状态改为屏幕边缘探头效果，角色比例固定，不再用缩小全身来表现靠边。
 - 帧间过渡使用光流中间帧，减少关键姿势硬切。
 - 清理绿幕边缘，减少绿色溢色。
 - `docs/qa/dark-contact-sheet.png` 用于检查深色背景下的边缘质量。
+- `docs/qa/mini-peek-motion-strip.png` 用于检查靠边探头动作的大小稳定性。
 - `docs/qa/working-motion-strip.png` 用于检查工作动作的衔接和模型稳定性。
 - `docs/qa/all-motion-strip.png` 用于检查全量动作的抽帧连续性。
 

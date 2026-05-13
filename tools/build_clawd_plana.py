@@ -60,15 +60,15 @@ MAIN_ASSETS = [
 ]
 
 MINI_ASSETS = [
-    ("plana-mini-idle.apng", "idle", 48, "mini-idle", 0.58, 1),
-    ("plana-mini-alert.apng", "waving", 32, "mini-alert", 0.58, 2),
-    ("plana-mini-happy.apng", "jumping", 40, "mini-happy", 0.58, 2),
-    ("plana-mini-enter.apng", "idle", 24, "mini-idle", 0.58, 1),
-    ("plana-mini-peek.apng", "waiting", 18, "mini-peek", 0.58, 1),
-    ("plana-mini-typing.apng", "review", 48, "mini-typing", 0.56, 3),
-    ("plana-mini-crabwalk.apng", "waiting", 32, "mini-idle", 0.56, 1),
-    ("plana-mini-enter-sleep.apng", "idle", 24, "mini-enter-sleep", 0.56, 1),
-    ("plana-mini-sleep.apng", "idle", 48, "mini-sleep", 0.56, 1),
+    ("plana-mini-idle.apng", "idle", 48, "mini-idle", 0.90, 1),
+    ("plana-mini-alert.apng", "idle", 32, "mini-alert", 0.90, 1),
+    ("plana-mini-happy.apng", "idle", 40, "mini-happy", 0.90, 1),
+    ("plana-mini-enter.apng", "idle", 24, "mini-enter", 0.90, 1),
+    ("plana-mini-peek.apng", "idle", 18, "mini-peek", 0.90, 1),
+    ("plana-mini-typing.apng", "review", 48, "mini-typing", 0.88, 1),
+    ("plana-mini-crabwalk.apng", "idle", 32, "mini-crabwalk", 0.88, 1),
+    ("plana-mini-enter-sleep.apng", "idle", 24, "mini-enter-sleep", 0.88, 1),
+    ("plana-mini-sleep.apng", "idle", 48, "mini-sleep", 0.88, 1),
 ]
 
 GENERATED_ASSETS = {
@@ -193,7 +193,7 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
         if kind == "typing":
             x0, y0, screen_w, screen_h = 82, 137, 74, 34
         else:
-            x0, y0, screen_w, screen_h = 113, 159, 45, 21
+            x0, y0, screen_w, screen_h = 76, 158, 45, 21
         draw_round_rect(draw, (x0 + 4, y0, x0 + 4 + screen_w, y0 + screen_h), 3, (20, 29, 43, 255), (8, 11, 18, 255), 2)
         draw.rectangle((x0 + 10, y0 + 7, x0 + screen_w - 6, y0 + screen_h - 8), fill=(32, 52, 73, 255))
         for i in range(3):
@@ -266,7 +266,7 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
         draw.arc((x0 + 14, y0 + 7, x0 + 34, y0 + 22), 200, 340, fill=(60, 43, 29, 255), width=2)
 
     elif kind in {"notification", "mini-alert"}:
-        x, y = 184, 36 if kind == "notification" else 150
+        x, y = (184, 36) if kind == "notification" else (96, 80)
         r = 13 + round(abs(pulse) * 2)
         draw.ellipse((x - r, y - r, x + r, y + r), fill=(255, 74, 106, 255), outline=(39, 12, 22, 255), width=3)
         draw.line((x, y - 7, x, y + 3), fill=(255, 245, 247, 255), width=3)
@@ -283,7 +283,7 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
                 draw.line((184, yy, 204, yy - 4), fill=(255, 84, 105, 255), width=3)
 
     elif kind in {"happy", "double", "double-jump", "mini-happy"}:
-        x, y = (182, 48) if not kind.startswith("mini") else (163, 144)
+        x, y = (182, 48) if not kind.startswith("mini") else (96, 76)
         for i in range(4):
             a = phase * math.tau + i * math.tau / 4
             px = x + math.cos(a) * 18
@@ -305,6 +305,25 @@ def draw_prop(canvas: Image.Image, kind: str, phase: float) -> None:
                 fill=(132, 206, 255, 220),
                 outline=(25, 42, 66, 230),
             )
+
+
+def draw_mini_edge(canvas: Image.Image) -> None:
+    draw = ImageDraw.Draw(canvas)
+    draw.rounded_rectangle((-10, 26, 31, 204), radius=6, fill=(20, 24, 34, 255), outline=(7, 9, 14, 255), width=2)
+    draw.rectangle((27, 31, 30, 196), fill=(55, 66, 86, 255))
+    draw.rectangle((31, 31, 33, 196), fill=(8, 11, 18, 235))
+
+
+def draw_mini_sleep_marks(canvas: Image.Image, phase: float) -> None:
+    draw = ImageDraw.Draw(canvas)
+    for idx in range(3):
+        px = 95 + idx * 10 + round(math.sin(phase * math.tau + idx) * 1.5)
+        py = 88 - idx * 10
+        draw.polygon(
+            [(px, py - 4), (px + 4, py), (px, py + 4), (px - 4, py)],
+            fill=(132, 206, 255, 220),
+            outline=(25, 42, 66, 230),
+        )
 
 
 def motion(kind: str, phase: float) -> dict[str, float | bool]:
@@ -388,10 +407,61 @@ def render_frame(cell: Image.Image, kind: str, scale: float, phase: float, inclu
     return canvas
 
 
+def render_mini_frame(cell: Image.Image, kind: str, scale: float, phase: float, include_prop: bool = True) -> Image.Image:
+    wave = math.sin(phase * math.tau)
+    wave2 = math.sin(phase * math.tau * 2)
+    canvas = Image.new("RGBA", CANVAS, (0, 0, 0, 0))
+    angle = wave * 0.5
+    if kind in {"mini-enter-sleep", "mini-sleep"}:
+        angle = -5 + wave * 0.5
+    elif kind == "mini-peek":
+        angle = -4 + math.sin(phase * math.pi) * 2
+    sprite = sprite_from_cell(cell, scale=scale, angle=angle, crop=True)
+
+    center_x = 61
+    baseline = 258 + wave * 0.8
+    if kind == "mini-enter":
+        center_x = 45 + ease(min(1.0, phase * 1.2)) * 16
+    elif kind == "mini-peek":
+        center_x = 49 + math.sin(phase * math.pi) * 11
+    elif kind == "mini-crabwalk":
+        center_x = 58 + wave2 * 2
+    elif kind == "mini-happy":
+        baseline = 257 - abs(wave2) * 3
+    elif kind in {"mini-enter-sleep", "mini-sleep"}:
+        center_x = 58
+        baseline = 260 + wave * 0.4
+
+    paste_sprite(canvas, sprite, center_x=center_x, baseline=baseline)
+    draw_mini_edge(canvas)
+
+    if not include_prop:
+        return canvas
+    if kind in {"mini-alert", "mini-happy", "mini-typing"}:
+        draw_prop(canvas, kind, phase)
+    elif kind in {"mini-enter-sleep", "mini-sleep"}:
+        draw_mini_sleep_marks(canvas, phase)
+
+    return canvas
+
+
 def build_sequence(row_frames: list[Image.Image], count: int, kind: str, scale: float, loops: int) -> list[Image.Image]:
     frames = []
     for i in range(count):
         phase = i / count
+        if kind.startswith("mini"):
+            position = phase * len(row_frames) * loops
+            source_idx = math.floor(position) % len(row_frames)
+            frac = position - math.floor(position)
+            current = render_mini_frame(row_frames[source_idx], kind, scale, phase, include_prop=False)
+            next_frame = render_mini_frame(row_frames[(source_idx + 1) % len(row_frames)], kind, scale, phase, include_prop=False)
+            frame = blended_frame(current, next_frame, frac)
+            if kind in {"mini-alert", "mini-happy", "mini-typing"}:
+                draw_prop(frame, kind, phase)
+            elif kind in {"mini-enter-sleep", "mini-sleep"}:
+                draw_mini_sleep_marks(frame, phase)
+            frames.append(frame)
+            continue
         position = phase * len(row_frames) * loops
         source_idx = math.floor(position) % len(row_frames)
         frac = position - math.floor(position)
@@ -740,7 +810,7 @@ def theme_json() -> dict[str, object]:
         "schemaVersion": 1,
         "name": "Clawd Plana",
         "author": "Xuan",
-        "version": "1.1.3",
+        "version": "1.1.4",
         "description": "Plana converted into a high-frame, cleaned-edge APNG Clawd on Desk theme.",
         "viewBox": {"x": 0, "y": 0, "width": CANVAS[0], "height": CANVAS[1]},
         "layout": {
@@ -893,15 +963,15 @@ def theme_json() -> dict[str, object]:
                 "plana-working-conducting.apng": {"x": -6, "y": 0},
                 "plana-working-sweeping.apng": {"x": -10, "y": 0},
                 "plana-working-carrying.apng": {"x": -10, "y": 0},
-                "plana-mini-idle.apng": {"x": 0, "y": 58},
-                "plana-mini-alert.apng": {"x": 0, "y": 58},
-                "plana-mini-happy.apng": {"x": 0, "y": 58},
-                "plana-mini-enter.apng": {"x": 0, "y": 58},
-                "plana-mini-peek.apng": {"x": 0, "y": 58},
-                "plana-mini-typing.apng": {"x": 0, "y": 58},
-                "plana-mini-crabwalk.apng": {"x": 0, "y": 58},
-                "plana-mini-enter-sleep.apng": {"x": 0, "y": 58},
-                "plana-mini-sleep.apng": {"x": 0, "y": 58},
+                "plana-mini-idle.apng": {"x": 0, "y": 0},
+                "plana-mini-alert.apng": {"x": 0, "y": 0},
+                "plana-mini-happy.apng": {"x": 0, "y": 0},
+                "plana-mini-enter.apng": {"x": 0, "y": 0},
+                "plana-mini-peek.apng": {"x": 0, "y": 0},
+                "plana-mini-typing.apng": {"x": 0, "y": 0},
+                "plana-mini-crabwalk.apng": {"x": 0, "y": 0},
+                "plana-mini-enter-sleep.apng": {"x": 0, "y": 0},
+                "plana-mini-sleep.apng": {"x": 0, "y": 0},
             },
         },
     }

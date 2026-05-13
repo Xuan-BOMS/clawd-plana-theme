@@ -288,7 +288,7 @@
     },
     "plana-mini-alert.apng": {
       "source": "atlas",
-      "sourceRow": "waving",
+      "sourceRow": "idle",
       "frames": 40,
       "durationMs": 50,
       "fps": 20.0,
@@ -299,7 +299,7 @@
     },
     "plana-mini-happy.apng": {
       "source": "atlas",
-      "sourceRow": "jumping",
+      "sourceRow": "idle",
       "frames": 50,
       "durationMs": 50,
       "fps": 20.0,
@@ -321,7 +321,7 @@
     },
     "plana-mini-peek.apng": {
       "source": "atlas",
-      "sourceRow": "waiting",
+      "sourceRow": "idle",
       "frames": 24,
       "durationMs": 50,
       "fps": 20.0,
@@ -343,7 +343,7 @@
     },
     "plana-mini-crabwalk.apng": {
       "source": "atlas",
-      "sourceRow": "waiting",
+      "sourceRow": "idle",
       "frames": 40,
       "durationMs": 50,
       "fps": 20.0,
